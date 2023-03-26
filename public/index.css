@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Barlow', sans-serif;
+}
+
+h1 {
+    font-size: 25px;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    max-width: 500px;
+    background-color: rgb(240, 240, 240);
+    border: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    font-family: 'Barlow', sans-serif;
+    border: 1px solid grey;
+}
+
+select {
+    width: calc(100% - 10px);
+    border: 0;
+    padding: 10px;
+    margin: 0;
+    max-width: 520px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: 1px solid grey;
+    font-family: 'Barlow', sans-serif;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 5px);
+    background-position-y: 7px;
+}
+
+label {
+    width: calc(100% - 10px);
+    max-width: 520px;
+    margin-top: 10px;
+    user-select: none;
+}
+
+.shorten {
+    width: calc(100% - 30px);
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+    max-width: 500px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all .10s linear;
+}
+
+.shorten:active {
+    background-color: rgb(130, 40, 214);
+}
+
+.message {
+    width: calc(100% - 10px);
+    max-width: 520px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+* {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}

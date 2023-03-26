@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continue - Top Links</title>
+    <meta name="description"
+        content="Top Links is a COMPLETELY FREE and UNLIMITED link shortener website with UNLIMITED link visits from your link WITHOUT NEEDING TO SIGNUP. Make AMAZING shortened links with just a few clicks and also set an expiry period to your links all for NO COST!">
+    <script src="https://cdn.jsdelivr.net/gh/sanchogodinhoapps/sanchogodinhoapps.github.io/ads/prebid.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="top">
+        <div class="link">
+            Press The Continue Button To Go To: <%= url %>
+        </div>
+        <a href="<%- url %>" class="continue">
+            Continue
+        </a>
+        <a class="message" href="/" target="_blank">
+            Create Your Own Link (Free, No Account Required, Unlimited Link Visits)
+        </a>
+    </div>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&display=swap');
+
+    html {
+        overflow: hidden;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .top {
+        width: 100%;
+        height: calc(100% - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .message {
+        all: unset;
+        cursor: pointer;
+        width: calc(100% - 10px);
+        max-width: 520px;
+        text-align: center;
+        margin-top: 10px;
+        font-family: 'Barlow', sans-serif;
+        color: blue;
+    }
+
+    .link {
+        width: calc(100% - 10px);
+        text-align: center;
+        max-width: 520px;
+        white-space: wrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px;
+        font-family: 'Barlow', sans-serif;
+        font-weight: 500;
+    }
+
+    .continue {
+        all: unset;
+        width: calc(100% - 30px);
+        padding: 10px;
+        background-color: blueviolet;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        max-width: 500px;
+        font-family: 'Barlow', sans-serif;
+        transition: all .10s linear;
+    }
+
+    .continue:active {
+        background-color: rgb(130, 40, 214);
+    }
+
+    .swal2-container {
+        font-family: 'Barlow', sans-serif;
+    }
+
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+</style>
+
+<script>
+    console.clear = () => { };
+    (async () => {
+        if (window.adsAllowed != null && window.adsAllowed == true) {
+            let AdScript = document.createElement('script');
+            AdScript.setAttribute('type', 'text/javascript');
+            if (window.innerWidth >= 400) {
+                AdScript.innerText = `atOptions = {'key' : '99af1f3ae10e696f18b28c1dd9f8bbad','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`;
+            } else {
+                AdScript.innerText = `atOptions = {'key' : '6f530cdc90a480ad509b3f7fb3a2c627','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/6f530cdc90a480ad509b3f7fb3a2c627/invoke.js"></scr' + 'ipt>');`;
+            }
+            document.body.appendChild(AdScript);
+        }
+        else {
+            Swal.fire({
+                title: 'Please Disable Your AdBlocker!',
+                text: 'Hi There, Please Disable Your Ablock!\nThis Is A Free URL Link Shortner And Running This App Costs Me A Lot Of Money. Disabling The Ads May Finish This Free Unlimited Service.\nThis App Is Personally Maintained By Me And Not Some Big Organization. There Is Only One Ad Banner Displayed On This Page Due To Which It Isn\'t A Big Deal For You Since It Won\'t Harm Your Device. But It Is Really Essestial For Me!',
+                imageUrl: 'https://img.icons8.com/external-bearicons-flat-bearicons/300/null/external-Forbidden-website-bearicons-flat-bearicons.png',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+                confirmButtonText: 'I have disabled it!',
+                confirmButtonColor: 'green',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            }).then(() => { window.location.reload() });
+        }
+    })();
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.style.height = window.innerHeight + 'px';
+
+        window.addEventListener('resize', () => {
+            document.body.style.height = window.innerHeight + 'px';
+        });
+    });
+</script>
+
+</html>

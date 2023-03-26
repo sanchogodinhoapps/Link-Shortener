@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Links - Free unlimited link shortener</title>
+    <meta name="description"
+        content="Top Links is a COMPLETELY FREE and UNLIMITED link shortener website with UNLIMITED link visits from your link WITHOUT NEEDING TO SIGNUP. Make AMAZING shortened links with just a few clicks and also set an expiry period to your links all for NO COST!">
+    <link rel="stylesheet" href="/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <meta name="keywords"
+        content="link shortener, free link shortener, free and unlimited link shortener, unlimited link shortener, link shortner without account, no account link shortener">
+</head>
+
+<body>
+    <h1>Top Link - A Free And Unlimited Link Shortener</h1>
+    <input type="text" class="link" placeholder="Enter Link Here">
+    <input type="text" class="short" placeholder="Enter Custom URL Ending (Optional)" style="margin-top:5px;">
+    <label>Expire In:</label>
+    <select class="period">
+        <option value="never">Never</option>
+        <option value="60">1 Minute</option>
+        <option value="300">5 Minutes</option>
+        <option value="2.628e+6">1 Month</option>
+        <option value="7.884e+6">3 Months</option>
+        <option value="1.577e+7">6 Months</option>
+        <option value="3.154e+7">1 Year</option>
+        <option value="1.577e+8">5 Years</option>
+        <option value="3.154e+8">10 Years</option>
+    </select>
+    <div class="shorten">Shorten (Free, No Account Required, Unlimited Visits)</div>
+    <div class="message">Note: Links that are set to never expire and inactive for more than 1 year than the last visit
+        would automatically be removed from our system.</div>
+</body>
+
+<script>
+    (() => {
+        let request = false;
+        $(document).ready(() => {
+            document.body.style.height = window.innerHeight + 'px';
+
+            $(window).on('resize', () => {
+                document.body.style.height = window.innerHeight + 'px';
+            });
+
+            document.querySelector('.shorten').addEventListener('click', () => {
+                if (request == false) {
+                    request = true;
+                    let link = $('.link').val();
+                    if (link.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g) != null) {
+                        $.ajax(
+                            {
+                                url: '/new',
+                                method: 'POST',
+                                data: {
+                                    url: link,
+                                    short: document.querySelector('.short').value.trim(),
+                                    expires: document.querySelector('select').value
+                                }
+                            }).done(data => {
+                                if (data.success != null && data.success == true) {
+                                    new jBox('Confirm', {
+                                        title: 'Success',
+                                        content: `<div style="font-familt:'Barlow',sans-serif;text-align:center;">Successfully Created Your URL:<br>` + data.link + `</div>`,
+                                        confirmButton: 'Copy Short Link',
+                                        cancelButton: 'Close',
+                                        overlay: false,
+                                        draggable: true,
+                                        confirm: function () {
+                                            request = false;
+                                            navigator.clipboard.writeText(data.link).then(function () {
+                                                new jBox('Notice', {
+                                                    content: 'URL copied to clipboard ✔️',
+                                                    color: 'green',
+                                                    delayOnHover: true,
+                                                    showCountdown: true,
+                                                    animation: { open: 'tada', close: 'zoomOut' },
+                                                });
+                                            }, function () {
+                                                new jBox('Notice', {
+                                                    content: 'Failed to copy URL to clipboard.',
+                                                    color: 'red',
+                                                    delayOnHover: true,
+                                                    showCountdown: true,
+                                                    animation: { open: 'tada', close: 'zoomOut' },
+                                                });
+                                            });
+                                        },
+                                        onClose: () => {
+                                            request = false;
+                                            $('.link').val('');
+                                            $('.short').val('');
+                                            $('.link').css('border', '1px solid grey');
+                                            $('.period option:eq(0)').prop('selected', true)
+                                        }
+                                    }).open();
+                                }
+                                else {
+                                    new jBox('Modal', {
+                                        title: 'Error!',
+                                        content: `<div style="font-familt:'Barlow',sans-serif;">` + data.error + `</div>`,
+                                        overlay: false,
+                                        draggable: true,
+                                        onClose: () => {
+                                            request = false;
+                                        }
+                                    }).open();
+                                }
+                            }).fail(() => {
+                                new jBox('Modal', {
+                                    title: 'Error!',
+                                    content: `<div style="font-familt:'Barlow',sans-serif;">Could Not Send Request To The Server!</div>`,
+                                    overlay: false,
+                                    draggable: true,
+                                    onClose: () => {
+                                        request = false;
+                                    }
+                                }).open();
+                            });
+                    }
+                    else {
+                        request = false;
+                        $('.link').css('border', '1px solid red');
+                        $('.link').css('padding', '9px');
+                    }
+                }
+            });
+        });
+
+        $(window).on('load', () => {
+            let jboxcss = document.createElement('link');
+            jboxcss.setAttribute('rel', 'stylesheet');
+            jboxcss.setAttribute('href', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css');
+            document.head.appendChild(jboxcss);
+        });
+    })();
+</script>
+
+</html>
